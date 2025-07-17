@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idade Canina</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h1 {
+      color: #007a78;
+      margin-bottom: 1rem;
+    }
+    input {
+      width: 40%;
+      padding: 0.5rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #007a78;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005f5e;
+    }
+    .resultado {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Idade Canina</h1>
+    <label>Idade do cão:</label><br>
+    <input type="number" id="anos" placeholder="Anos" min="0">
+    <input type="number" id="meses" placeholder="Meses" min="0" max="11"><br>
+    <button onclick="calcularIdadeHumana()">Calcular</button>
+    <div class="resultado" id="resultado">Idade humana equivalente: 0 anos, 0 meses</div>
+  </div>
+
+  <script>
+    function calcularIdadeHumana() {
+      const anos = parseInt(document.getElementById('anos').value) || 0;
+      const meses = parseInt(document.getElementById('meses').value) || 0;
+      let idadeHumana = 0;
+
+      if (anos >= 1) idadeHumana += 15;
+      if (anos >= 2) idadeHumana += 9;
+      if (anos > 2) idadeHumana += (anos - 2) * 5;
+      if (anos >= 2) idadeHumana += (meses / 12) * 5;
+      else if (anos === 1) idadeHumana += (meses / 12) * 9;
+      else idadeHumana += (meses / 12) * 15;
+
+      const anosHumanos = Math.floor(idadeHumana);
+      const mesesHumanos = Math.round((idadeHumana - anosHumanos) * 12);
+
+      document.getElementById('resultado').textContent = 
+        `Idade humana equivalente: ${anosHumanos} anos, ${mesesHumanos} meses`;
+    }
+  </script>
+</body>
+</html>
